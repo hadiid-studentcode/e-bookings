@@ -320,6 +320,7 @@
 
     <!-- Flatpickr -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- Enhanced Booking Script -->
     <script>
@@ -364,6 +365,12 @@
                 theme: "dark"
             });
 
+            let data_console = [];
+            let data_date = [];
+            let data_basePrice = [];
+            let data_weekendCharge = [];
+            let data_totalPrice = [];
+
             // Price calculation
             function calculatePrice() {
                 const selectedConsole = document.querySelector('.console-option.selected');
@@ -383,17 +390,44 @@
                 const totalPrice = basePrice + weekendCharge;
 
                 document.getElementById('basePrice').textContent = `Rp ${basePrice.toLocaleString()}`;
+
                 document.getElementById('weekendCharge').textContent = `Rp ${weekendCharge.toLocaleString()}`;
                 document.getElementById('totalPrice').textContent = `Rp ${totalPrice.toLocaleString()}`;
+
+
+                data_console = selectedConsole.getAttribute('data-console');
+                data_date = bookingDate;
+                data_basePrice = basePrice;
+                data_weekendCharge = weekendCharge;
+                data_totalPrice = totalPrice;
+
+
+
             }
 
             document.getElementById('bookingDate').addEventListener('change', calculatePrice);
 
             // Handle form submission
-            document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            document.getElementById('bookingForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 // Here you'll add the Midtrans integration
                 alert('Proceeding to payment gateway...');
+
+
+                let response = await axios.post('{{ route('createTransaction') }}', {
+                    console: data_console,
+                    date: data_date,
+                    basePrice: data_basePrice,
+                    weekendCharge: data_weekendCharge,
+                    totalPrice: data_totalPrice
+                }).then(function(response) {
+                    window.open(response.data.redirect_url, '_blank');
+
+                }).then(function(error) {
+                    console.log(error);
+                })
+
+
             });
         });
     </script>
