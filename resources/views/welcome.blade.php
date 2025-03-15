@@ -27,6 +27,10 @@
 
     <!-- Additional CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="SB-Mid-client-j3y2vxB1m8KL8uUA"></script>
+
     <style>
         .game-card {
             background: linear-gradient(45deg, #1a1f71, #2d44a9);
@@ -81,10 +85,11 @@
         }
 
         .hero-section {
-            background: linear-gradient(45deg, #1a1f71, #2d44a9);
-            padding: 150px 0 100px;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(rgba(26, 31, 113, 0.9), rgba(45, 68, 169, 0.9)),
+                url('https://images.unsplash.com/photo-1592155931584-901ac15763e3') center/cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
 
         .floating-controller {
@@ -182,6 +187,150 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* New Styles */
+        .features-section {
+            padding: 80px 0;
+            background: url('{{ asset('assets/img/pattern-bg.png') }}') repeat;
+        }
+
+        .feature-box {
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #1a1f71;
+            margin-bottom: 20px;
+        }
+
+        .testimonials-section {
+            padding: 80px 0;
+            background: linear-gradient(45deg, #2d44a9, #1a1f71);
+            color: white;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .how-it-works {
+            padding: 80px 0;
+            background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f') center/cover fixed;
+            position: relative;
+        }
+
+        .how-it-works::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .step-box {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #1a1f71;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .cta-section {
+            background: linear-gradient(rgba(26, 31, 113, 0.9), rgba(45, 68, 169, 0.9)),
+                url('{{ asset('assets/img/gaming-bg.jpg') }}') center/cover;
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+        }
+
+        /* Payment Modal Styles */
+        .payment-modal .modal-content {
+            background: linear-gradient(45deg, #1a1f71, #2d44a9);
+            color: white;
+            border-radius: 15px;
+        }
+
+        .payment-modal .modal-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .payment-modal .modal-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .payment-modal .close {
+            color: white;
+        }
+
+        #snap-container iframe {
+            width: 100%;
+            min-height: 500px;
+            border: none;
+            justify-content: center;
+        }
+
+        .console-image {
+            max-width: 120px;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+
+        .console-option:hover .console-image {
+            transform: scale(1.1);
+        }
+
+        .game-preview {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-bg {
+            background: url('https://images.unsplash.com/photo-1511512578047-dfb367046420') center/cover fixed;
+        }
+
+        .testimonial-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(26, 31, 113, 0.95), rgba(45, 68, 169, 0.95));
+        }
     </style>
 
     <!-- Styles / Scripts -->
@@ -213,8 +362,69 @@
                             service.</p>
                         <a href="#booking" class="btn btn-primary btn-lg btn-round">Book Now</a>
                     </div>
-                    <div class="col-12 col-md-6 text-center animate__animated animate__fadeInRight d-none d-md-block">
-                        <i class="fas fa-gamepad fa-8x text-white opacity-50"></i>
+                    <div class="col-12 col-md-6 animate__animated animate__fadeInRight">
+                        <img src="{{ asset('assets/img/ps5-console.png') }}" alt="PlayStation 5"
+                            class="img-fluid floating-controller">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+            <div class="container">
+                <h2 class="text-center mb-5">Why Choose Us?</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="feature-box">
+                            <i class="fas fa-trophy feature-icon"></i>
+                            <h4>Latest Consoles</h4>
+                            <p>Access to the newest PlayStation consoles and games</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="feature-box">
+                            <i class="fas fa-clock feature-icon"></i>
+                            <h4>Flexible Hours</h4>
+                            <p>Book your gaming sessions at your convenience</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="feature-box">
+                            <i class="fas fa-shield-alt feature-icon"></i>
+                            <h4>Safe & Clean</h4>
+                            <p>Sanitized equipment and comfortable gaming environment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="how-it-works">
+            <div class="container">
+                <h2 class="text-center mb-5">How It Works</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="step-box">
+                            <div class="step-number">1</div>
+                            <h4>Choose Console</h4>
+                            <p>Select your preferred PlayStation console</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="step-box">
+                            <div class="step-number">2</div>
+                            <h4>Pick Date</h4>
+                            <p>Select your preferred gaming date</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="step-box">
+                            <div class="step-number">3</div>
+                            <h4>Play & Enjoy</h4>
+                            <p>Come in and enjoy your gaming session</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -237,12 +447,16 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="console-option" data-console="ps4">
+                                                    <img src="https://images.unsplash.com/photo-1606813903259-9f9b5c0d6c3b" alt="PlayStation 4"
+                                                        class="console-image">
                                                     <h5><i class="fas fa-gamepad mr-2"></i>PlayStation 4</h5>
                                                     <span class="price-tag">Rp 30.000/session</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="console-option" data-console="ps5">
+                                                    <img src="https://images.unsplash.com/photo-1606813903259-9f9b5c0d6c3b" alt="PlayStation 5"
+                                                        class="console-image">
                                                     <h5><i class="fas fa-gamepad mr-2"></i>PlayStation 5</h5>
                                                     <span class="price-tag">Rp 40.000/session</span>
                                                 </div>
@@ -285,6 +499,98 @@
                                 </form>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enhanced Game Preview Section -->
+        <div class="game-preview-section py-5">
+            <div class="container">
+                <h2 class="text-center mb-5">Featured Games</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8" alt="Game 1"
+                            class="game-preview">
+                        <h5 class="text-center">FIFA 23</h5>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="https://images.unsplash.com/photo-1616043476726-cbe0255c0cfc" alt="Game 2"
+                            class="game-preview">
+                        <h5 class="text-center">God of War</h5>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="https://images.unsplash.com/photo-1486572788966-cfd3df1f5b42" alt="Game 3"
+                            class="game-preview">
+                        <h5 class="text-center">Spider-Man</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials Section -->
+        <div class="testimonials-section">
+            <div class="container">
+                <h2 class="text-center mb-5">What Gamers Say</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="testimonial-card">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde" alt="User"
+                                class="testimonial-avatar">
+                            <h5>John Doe</h5>
+                            <p>"Amazing gaming experience! Clean and professional setup."</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="testimonial-card">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="User"
+                                class="testimonial-avatar">
+                            <h5>Jane Smith</h5>
+                            <p>"Best place to enjoy PS5 games with friends!"</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="testimonial-card">
+                            <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61" alt="User"
+                                class="testimonial-avatar">
+                            <h5>Mike Johnson</h5>
+                            <p>"Affordable prices and great game selection."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <div class="container">
+                <h2 class="mb-4">Ready to Start Gaming?</h2>
+                <p class="lead mb-4">Book your session now and experience next-gen gaming!</p>
+                <a href="#booking" class="btn btn-primary btn-lg btn-round">Book Your Session</a>
+            </div>
+        </div>
+
+        <div class="modal fade payment-modal" id="paymentModal" tabindex="-1" role="dialog"
+            aria-labelledby="paymentModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen-sm-down" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="paymentModalLabel">
+                            <i class="fas fa-credit-card mr-2"></i>Complete Your Payment
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="snap-container"></div>
+                        {{-- <div id="snap-container">
+                            <!-- Payment iframe will be embedded here -->
+                            <div class="text-center p-4">
+                                <i class="fas fa-spinner fa-spin fa-2x mb-3"></i>
+                                <p>Loading payment gateway...</p>
+                            </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -410,24 +716,41 @@
             // Handle form submission
             document.getElementById('bookingForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
-                // Here you'll add the Midtrans integration
-                alert('Proceeding to payment gateway...');
 
+                // Show loading state
+                $('#paymentModal').modal('show');
 
-                let response = await axios.post('{{ route('createTransaction') }}', {
-                    console: data_console,
-                    date: data_date,
-                    basePrice: data_basePrice,
-                    weekendCharge: data_weekendCharge,
-                    totalPrice: data_totalPrice
-                }).then(function(response) {
-                    window.open(response.data.redirect_url, '_blank');
+                try {
+                    let response = await axios.post('{{ route('createTransaction') }}', {
+                        console: data_console,
+                        date: data_date,
+                        basePrice: data_basePrice,
+                        weekendCharge: data_weekendCharge,
+                        totalPrice: data_totalPrice
+                    });
 
-                }).then(function(error) {
+                    const snapContainer = document.getElementById('snap-container');
+                    snapContainer.innerHTML = ''; // Clear previous content
+
+                    const iframe = document.createElement('iframe');
+                    iframe.src = response.data.redirect_url;
+                    iframe.style.width = '100%';
+                    iframe.style.minHeight = '100vh';
+                    iframe.style.border = 'none';
+
+                    snapContainer.appendChild(iframe);
+
+                    // Handle modal close event
+                    $('#paymentModal').on('hidden.bs.modal', function() {
+                        snapContainer.innerHTML =
+                            ''; // Clear iframe content when modal is closed
+                    });
+
+                } catch (error) {
                     console.log(error);
-                })
-
-
+                    alert('An error occurred while processing your payment.');
+                    $('#paymentModal').modal('hide');
+                }
             });
         });
     </script>
