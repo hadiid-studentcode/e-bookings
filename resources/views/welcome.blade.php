@@ -453,7 +453,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="console-option" data-console="ps5">
-                                                   
+
                                                     <h5><i class="fas fa-gamepad mr-2"></i>PlayStation 5</h5>
                                                     <span class="price-tag">Rp 40.000/session</span>
                                                 </div>
@@ -501,7 +501,7 @@
             </div>
         </div>
 
-      
+
 
         <!-- Testimonials Section -->
         <div class="testimonials-section">
@@ -559,13 +559,6 @@
                     </div>
                     <div class="modal-body">
                         <div id="snap-container"></div>
-                        {{-- <div id="snap-container">
-                            <!-- Payment iframe will be embedded here -->
-                            <div class="text-center p-4">
-                                <i class="fas fa-spinner fa-spin fa-2x mb-3"></i>
-                                <p>Loading payment gateway...</p>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -602,6 +595,7 @@
     <!-- Flatpickr -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Enhanced Booking Script -->
     <script>
@@ -682,8 +676,6 @@
                 data_weekendCharge = weekendCharge;
                 data_totalPrice = totalPrice;
 
-
-
             }
 
             document.getElementById('bookingDate').addEventListener('change', calculatePrice);
@@ -704,26 +696,56 @@
                         totalPrice: data_totalPrice
                     });
 
-                    const snapContainer = document.getElementById('snap-container');
-                    snapContainer.innerHTML = ''; // Clear previous content
+                    window.snap.pay(response.data.token, {
+                        onSuccess: function(result) {
+                            Swal.fire({
+                                title: 'Payment Successful!',
+                                text: 'Thank you for your payment. Your booking has been confirmed.',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            });
 
-                    const iframe = document.createElement('iframe');
-                    iframe.src = response.data.redirect_url;
-                    iframe.style.width = '100%';
-                    iframe.style.minHeight = '100vh';
-                    iframe.style.border = 'none';
-
-                    snapContainer.appendChild(iframe);
-
-                    // Handle modal close event
-                    $('#paymentModal').on('hidden.bs.modal', function() {
-                        snapContainer.innerHTML =
-                            ''; // Clear iframe content when modal is closed
+                            $('#paymentModal').modal('hide');
+                           
+                             
+                         
+                        },
+                        onPending: function(result) {
+                            Swal.fire({
+                                title: 'Payment Pending!',
+                                text: 'Your payment is pending. Please complete the payment to confirm your booking.',
+                                icon: 'info',
+                                confirmButtonText: 'OK'
+                            });
+                        
+                        },
+                        onError: function(result) {
+                            Swal.fire({
+                                title: 'Payment Failed!',
+                                text: 'An error occurred during the payment process. Please try again.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        
+                        },
+                        onClose: function() {
+                            Swal.fire({
+                                title: 'Payment Cancelled',
+                                text: 'You have cancelled the payment process.',
+                                icon: 'warning',
+                                confirmButtonText: 'OK'
+                            });
+                            $('#paymentModal').modal('hide');
+                        }
                     });
 
                 } catch (error) {
-                    console.log(error);
-                    alert('An error occurred while processing your payment.');
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'An error occurred while processing your payment. Please try again later.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
                     $('#paymentModal').modal('hide');
                 }
             });
