@@ -29,7 +29,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
 
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-        data-client-key="SB-Mid-client-j3y2vxB1m8KL8uUA"></script>
+        data-client-key="{{ env('DATA_CLIENT_KEY') }}"></script>
 
     <style>
         .game-card {
@@ -447,16 +447,13 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="console-option" data-console="ps4">
-                                                    <img src="https://images.unsplash.com/photo-1606813903259-9f9b5c0d6c3b" alt="PlayStation 4"
-                                                        class="console-image">
                                                     <h5><i class="fas fa-gamepad mr-2"></i>PlayStation 4</h5>
                                                     <span class="price-tag">Rp 30.000/session</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="console-option" data-console="ps5">
-                                                    <img src="https://images.unsplash.com/photo-1606813903259-9f9b5c0d6c3b" alt="PlayStation 5"
-                                                        class="console-image">
+                                                   
                                                     <h5><i class="fas fa-gamepad mr-2"></i>PlayStation 5</h5>
                                                     <span class="price-tag">Rp 40.000/session</span>
                                                 </div>
@@ -504,29 +501,7 @@
             </div>
         </div>
 
-        <!-- Enhanced Game Preview Section -->
-        <div class="game-preview-section py-5">
-            <div class="container">
-                <h2 class="text-center mb-5">Featured Games</h2>
-                <div class="row">
-                    <div class="col-md-4 mb-4">
-                        <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8" alt="Game 1"
-                            class="game-preview">
-                        <h5 class="text-center">FIFA 23</h5>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <img src="https://images.unsplash.com/photo-1616043476726-cbe0255c0cfc" alt="Game 2"
-                            class="game-preview">
-                        <h5 class="text-center">God of War</h5>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <img src="https://images.unsplash.com/photo-1486572788966-cfd3df1f5b42" alt="Game 3"
-                            class="game-preview">
-                        <h5 class="text-center">Spider-Man</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
+      
 
         <!-- Testimonials Section -->
         <div class="testimonials-section">
